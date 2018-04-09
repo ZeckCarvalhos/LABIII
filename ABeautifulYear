@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		List<Integer> anos = new ArrayList<>();
+		int incremento = 0;
+
+		for (int i = 1000; i <= 9012; i++) {
+			anos.add(i);
+		}
+		
+		Scanner sc = new Scanner(System.in);
+		String ano = new String();
+
+	
+		int num = sc.nextInt();
+
+		if (num >= 1000 && num <= 9000) {
+			ano = Integer.toString(num);
+		} else {
+			System.out.println("Numero fora da faixa solicitada");
+		}
+
+		sc.close();
+
+		do {
+
+			ano = Integer.toString(anos.get(num - 999 + (incremento++)));
+			if (isBeautiful(ano)) {
+				System.out.println(ano);
+			}
+
+			
+		} while (isBeautiful(ano) != true);
+
+	}
+
+	public static boolean isBeautiful(String ano) {
+
+		boolean isBeauty = false;
+
+		if (Integer.parseInt(ano.substring(0, 1)) != Integer.parseInt(ano.substring(1, 2))) {
+			if (Integer.parseInt(ano.substring(0, 1)) != Integer.parseInt(ano.substring(2, 3))) {
+				if (Integer.parseInt(ano.substring(0, 1)) != Integer.parseInt(ano.substring(3, 4))) {
+					if (Integer.parseInt(ano.substring(1, 2)) != Integer.parseInt(ano.substring(2, 3))) {
+						if (Integer.parseInt(ano.substring(1, 2)) != Integer.parseInt(ano.substring(3, 4))) {
+							if (Integer.parseInt(ano.substring(2, 3)) != Integer.parseInt(ano.substring(3, 4))) {
+								isBeauty = true;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return isBeauty;
+	}
+}
